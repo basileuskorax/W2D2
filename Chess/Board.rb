@@ -1,5 +1,14 @@
 require 'byebug'
 require_relative 'Piece'
+require_relative 'NullPiece'
+require_relative 'Queen'
+require_relative 'King'
+require_relative 'Rook'
+require_relative 'Bishop'
+require_relative 'Pawn'
+require_relative 'Knight'
+require_relative 'SlidingPiece'
+require_relative 'SteppingPiece'
 
 class NoPieceError < StandardError
 end
@@ -27,11 +36,10 @@ class Board
 
   def move_piece(start_pos, end_pos)
     raise NoPieceError.new "There is no piece here!" if self[start_pos].is_a?(NullPiece)
-    raise InvalidMoveError.new "You can't move there!" unless valid_move?(end_pos)
+    raise InvalidMoveError.new "You can't move there!" unless self[start_pos].valid_move?(end_pos)
 
     self[end_pos] = self[start_pos]
-    # self[end_pos].pos = end_pos
-    self[start_pos] = NullPiece.new
+    self[start_pos] = NullPiece.instance
   end
 
 
@@ -45,17 +53,19 @@ class Board
   end
 
   private
-  def valid_move?(pos)
-    return false unless (0..7).include?(pos[0]) && (0..7).include?(pos[1])
-    return false unless self[pos].is_a?(NullPiece) && !self[pos].is_a?(Piece)
-
-    true
-  end
+  # def valid_move?(start_pos, end_pos)
+  #   # return false unless (0..7).include?(end_pos[0]) && (0..7).include?(end_pos[1])
+  #   # return false unless self[end_pos].is_a?(NullPiece)
+  #   return true unless self[start_pos].color == self[end_pos].color
+  #   piece.valid_move?(start_pos)
+  #
+  #   true
+  # end
 
   def setup(grid)
     grid[2..5].map! do |row|
       row.map! do |col|
-        col = NullPiece.new
+        col = NullPiece.instance
       end
     end
 
@@ -86,6 +96,7 @@ class Board
         grid[7][file] = Queen.new(:white, [7, file], self)
       else
         grid[7][file] = King.new(:white, [7, file], self)
+      end
     end
 
     # grid[0][0], grid[0][7] = Rook.new, Rook.new

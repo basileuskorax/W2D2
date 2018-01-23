@@ -1,9 +1,11 @@
+require 'Singleton'
+
 class NullPiece
-  include 'Singleton'
+  include Singleton
 
   def initialize
     @color = nil
-    @symbol = ''
+    @symbol = '   '
     @pos = []
     @board = nil
   end

@@ -4,9 +4,9 @@ class King < Piece
   def initialize(color, pos, board)
     super
     if color == :white
-      @symbol = "\u2654"
+      @symbol = " \u2654 "
     else
-      @symbol = "\u265A"
+      @symbol = " \u265A "
     end
   end
 

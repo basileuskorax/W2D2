@@ -21,21 +21,34 @@ class Display
     system('clear')
 
     row = 0
+    rank = ''
+    grid = []
     while row < 8
       col = 0
       while col < 8
         if [row, col] == cursor.cursor_pos
-          cur = board[[row, col]].symbol.colorize(:background => :blue)
-          print cur
+          rank << board[[row, col]].symbol.colorize(:background => :light_yellow)
+          col += 1
+          next
+        end
+        if (row + col).even?
+          rank << board[[row, col]].symbol.colorize(:background => :light_green)
         else
-        print board[[row, col]].symbol
+          rank << board[[row, col]].symbol.colorize(:background => :light_black)
         end
         col += 1
       end
+        grid << rank
+        rank = ''
         row += 1
     end
-
-
+    grid.each {|el| puts el}
 
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  b = Board.new
+  d = Display.new(b)
+  d.move_cursor
 end

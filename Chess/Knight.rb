@@ -4,9 +4,9 @@ class Knight < Piece
   def initialize(color, pos, board)
     super
     if color == :white
-      @symbol = "\u2658"
+      @symbol = " \u2658 "
     else
-      @symbol = "\u265E"
+      @symbol = " \u265E "
     end
   end
 

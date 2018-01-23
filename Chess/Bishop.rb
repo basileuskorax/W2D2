@@ -1,3 +1,4 @@
+
 class Bishop < Piece
   include SlidingPiece
 
@@ -6,9 +7,9 @@ class Bishop < Piece
   def initialize(color, pos, board)
     super
     if color == :white
-      @symbol = "\u2657"
+      @symbol = " \u2657 "
     else
-      @symbol = "\u265D"
+      @symbol = " \u265D "
     end
   end
 

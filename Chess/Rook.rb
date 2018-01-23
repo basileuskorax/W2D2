@@ -1,12 +1,13 @@
+
 class Rook < Piece
   include SlidingPiece
 
   def initialize(color, pos, board)
     super
     if color == :white
-      @symbol = "\u2655"
+      @symbol = " \u2656 "
     else
-      @symbol = "\u265C"
+      @symbol = " \u265C "
     end
   end
 

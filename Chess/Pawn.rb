@@ -3,9 +3,9 @@ class Pawn < Piece
   def initialize(color, pos, board)
     super
     if color == :white
-      @symbol = "\u2659"
+      @symbol = " \u2659 "
     else
-      @symbol = "\u265F"
+      @symbol = " \u265F "
     end
   end
 

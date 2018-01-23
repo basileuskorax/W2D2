@@ -1,12 +1,14 @@
+# require_relative SlidingPiece
+
 class Queen < Piece
   include SlidingPiece
 
   def initialize(color, pos, board)
     super
     if color == :white
-      @symbol = "\u2655"
+      @symbol = " \u2655 "
     else
-      @symbol = "\u265B"
+      @symbol = " \u265B "
     end
   end
 
